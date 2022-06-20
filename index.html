@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="content"> </div>
+
+    <script>
+        fetch("https://ci-swapi.herokuapp.com/api/")
+        // use this method called 'then', which we chain onto the end.
+        // And that's going to get our response, convert it to text and store it in this variable called response using our arrow function.
+        .then(response => response.text())
+        // chain on a second 'then' method. And this is going to use a function that we know very, very well
+        // our familiar way of setting text on the DOM.
+        // So that's my 'document.getElementById', we're going to set the inner text of our content div to the data that we returned.
+        .then(data => {
+            document.getElementById("content").innerText = data;
+        })
+        // To allow for a broken promise,  we also need to pass in  
+        // a catch method that will handle the error  response. So let’s add that to our example code now.
+        .catch((e) => {
+            console.error("Error: ", e);
+        })
+
+    </script>
+</body>
+</html>
